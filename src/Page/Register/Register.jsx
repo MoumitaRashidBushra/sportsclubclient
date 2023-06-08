@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
 
     const [error, setError] = useState('');
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, user, googleLogin } = useContext(AuthContext);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -28,15 +32,71 @@ const Register = () => {
                 console.log(createdUser);
                 setError('')
                 updateUser(createdUser, data.name, data.photo)
-                navigate('/')
+                    .then(() => {
+                        const databaseUser =
+                        {
+                            name: data.name,
+                            email: data.email
+                        }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(databaseUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    //reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Successfully user create done.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
+
+                    })
+
+
             })
             .catch(error => {
                 console.log(error.message);
                 setError(error.message);
             })
 
+    }
 
+    const handleToGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                const databaseUser =
+                {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(databaseUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
 
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -102,6 +162,12 @@ const Register = () => {
                         </div>
                         <div className='text-center mt-2'>
                             <p className='font-bold mb-6'>Don't Have an Account?<button className="btn btn-outline  ms-2"><Link to='/login'>Login</Link></button> </p>
+
+                            <div className="divider px-3">OR</div>
+
+                            <button
+                                onClick={handleToGoogleLogin}
+                                className="btn btn-outline  mt-3 mb-6"><FaGoogle className='mr-2' /> Login wth Google</button> <br />
 
                         </div>
 

@@ -15,7 +15,7 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
-    const { githubLogin, googleLogin, signIn } = useContext(AuthContext);
+    const { googleLogin, signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     // const togglePasswordVisibility = () => {
     //     setShowPassword(!showPassword);
@@ -45,7 +45,23 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                navigate('/')
+                const databaseUser =
+                {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(databaseUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
+                //navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
