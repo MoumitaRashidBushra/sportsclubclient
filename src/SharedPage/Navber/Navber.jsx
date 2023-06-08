@@ -35,7 +35,7 @@ const Navber = () => {
                         {
                             user ?
                                 <>
-                                    <Link to='addAToy' className='mx-2 lg:mx-4'>Dashboard</Link>
+                                    <Link to='dashboard' className='mx-2 lg:mx-4'>Dashboard</Link>
 
 
                                 </>
