@@ -13,8 +13,9 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import ManageClasses from "../Layout/Dashboard/ManageClasses/ManageClasses";
 import ManageUsers from "../Layout/Dashboard/ManageUsers/ManageUsers";
-import AddAClass from "../Layout/Dashboard/AddAClass/AddAClass";
+//import AddAClass from "../Layout/Dashboard/AddAClass/AddAClass";
 import MyClasses from "../Layout/Dashboard/MyClasses/MyClasses";
+import AddAClass from "../Layout/Dashboard/AddAClass/AddAClass";
 
 const router = createBrowserRouter([
     {
