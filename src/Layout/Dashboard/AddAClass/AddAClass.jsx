@@ -2,56 +2,60 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 const imgHosting = import.meta.env.VITE_IMAGE;
 const AddAClass = () => {
+
+
     const { user, updateUser, loading } = useContext(AuthContext);
+    const [axiosSecure] = useAxiosSecure();
 
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imgHostingUrl = `https://api.imgbb.com/1/upload?key=${imgHosting}`
 
-    // const onSubmit = data => {
-    //     console.log(data);
+    const onSubmit = data => {
+        console.log(data);
 
-    //     const formData = new FormData();
-    //     formData.append('image', data.image[0])
+        const formData = new FormData();
+        formData.append('image', data.image[0])
 
-    //     fetch(imgHosting, {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //         .then(res => res.json())
-    //         .then(imgResponse => {
-    //             if (imgResponse.success) {
-    //                 const imgURL = imgResponse.data.display_url;
-    //                 const { name, price, category, recipe } = data;
-    //                 const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL }
-    //                 console.log(newItem)
-    //                 axiosSecure.post('/menu', newItem)
-    //                     .then(data => {
-    //                         console.log('after posting new menu item', data.data)
-    //                         if (data.data.insertedId) {
-    //                             reset();
-    //                             Swal.fire({
-    //                                 position: 'top-end',
-    //                                 icon: 'success',
-    //                                 title: 'Item added successfully',
-    //                                 showConfirmButton: false,
-    //                                 timer: 1500
-    //                             })
-    //                         }
-    //                     })
-    //             }
-    //         })
-    // }
-    //console.log(user.displayName)
+        fetch(imgHostingUrl, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { className, instructorName, instructorEmail, availableSeats, price } = data;
+                    const newItem = { className, instructorName, instructorEmail, availableSeats, price: parseFloat(price), image: imgURL, status: "pending" }
+                    console.log(newItem)
+                    axiosSecure.post('/classes', newItem)
+                        .then(data => {
+                            console.log('after posting new menu item', data.data)
+                            if (data.data.insertedId) {
+                                //reset();
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'Class Added Successfully',
+                                    icon: 'success',
+                                    confirmButtonText: 'Cool'
+
+                                })
+                            }
+                        })
+                }
+            })
+    }
+    console.log(user.displayName)
 
     return (
         <div className='container lg:container lg:mx-auto  lg:px-20 lg:pt-8 pb-6 '>
             <h2 className='text-center text-4xl font-bold pt-10 pb-6'>Add A Brand New Class!!!</h2>
 
             <form
-            // onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}
             >
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 pt-8  mb-6 px-20 '>
 
