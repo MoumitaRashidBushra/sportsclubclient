@@ -19,6 +19,7 @@ import AddAClass from "../Layout/Dashboard/AddAClass/AddAClass";
 import MySelectedClasses from "../Layout/Dashboard/MySelectedClasses/MySelectedClasses";
 import MyEnrolledClasses from "../Layout/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
 import Feedback from "../Layout/Dashboard/ManageClasses/Feedback/Feedback";
+import Payment from "../Layout/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
             {
                 path: "mySelClasses",
                 element: <MySelectedClasses></MySelectedClasses>,
+            },
+            {
+                path: "/dashboard/payment/:id",
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
             },
             {
                 path: "myEnrClasses",

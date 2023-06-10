@@ -6,7 +6,7 @@ import ShowClasses from './ShowClasses';
 const ClassesPage = () => {
     const { user, updateUser, loading } = useContext(AuthContext);
     const { data: classes = [], refetch } = useQuery(['classes'], async () => {
-        const res = await fetch('http://localhost:5000/showclass')
+        const res = await fetch('http://localhost:5000/showclasses')
         return res.json();
 
     })
