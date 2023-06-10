@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MySelectedClasses = () => {
 
@@ -15,7 +16,37 @@ const MySelectedClasses = () => {
 
 
     })
-    console.log(select)
+    //console.log(select)
+
+    const handleDelete = item => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/select/${item._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your class has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
+
 
 
 
@@ -65,7 +96,7 @@ const MySelectedClasses = () => {
 
                                 <th>
                                     <button
-                                        //onClick={() => handleApprove(item)}
+                                        onClick={() => handleDelete(item)}
                                         className="btn btn-warning btn-xs text-white">Delete</button>
                                 </th>
                                 <th>
