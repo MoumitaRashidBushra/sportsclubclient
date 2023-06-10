@@ -2,6 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const ManageClasses = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -14,14 +15,35 @@ const ManageClasses = () => {
     const handleApprove = item => {
         const newItem = { status: "Approved" }
 
-        axiosSecure.patch(`/classes/${item._id}`, newItem)
+        axiosSecure.patch(`/approved/${item._id}`, newItem)
             .then(data => {
                 refetch()
                 if (data.data.modifiedCount > 0) {
                     //reset();
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Class Added Successfully',
+                        text: 'Class Approved Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+
+                    })
+                }
+            })
+    }
+
+
+
+    const handleDeny = item => {
+        const newItem = { status: "Deny" }
+
+        axiosSecure.patch(`/deny/${item._id}`, newItem)
+            .then(data => {
+                refetch()
+                if (data.data.modifiedCount > 0) {
+                    //reset();
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Class Deny Successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
 
@@ -76,13 +98,20 @@ const ManageClasses = () => {
                                 <th>
                                     <button
                                         onClick={() => handleApprove(item)}
+                                        disabled={item.status === 'Approved' || item.status === 'Deny'}
                                         className="btn btn-warning btn-xs text-white">Approve</button>
                                 </th>
                                 <th>
-                                    <button className="btn btn-error btn-xs text-white">Deny</button>
+                                    <button
+                                        onClick={() => handleDeny(item)}
+                                        disabled={item.status === 'Approved' || item.status === 'Deny'}
+                                        className="btn btn-error btn-xs text-white">Deny</button>
                                 </th>
                                 <th>
-                                    <button className="btn btn-info btn-xs text-white">Feedback</button>
+                                    <Link to={`/dashboard/feedback/${item._id}`}>
+                                        <button className="btn btn-info btn-xs text-white">Feedback</button>
+                                    </Link>
+
                                 </th>
 
                             </tr>)

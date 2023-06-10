@@ -18,6 +18,7 @@ import MyClasses from "../Layout/Dashboard/MyClasses/MyClasses";
 import AddAClass from "../Layout/Dashboard/AddAClass/AddAClass";
 import MySelectedClasses from "../Layout/Dashboard/MySelectedClasses/MySelectedClasses";
 import MyEnrolledClasses from "../Layout/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
+import Feedback from "../Layout/Dashboard/ManageClasses/Feedback/Feedback";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
             {
                 path: "manageClasses",
                 element: <ManageClasses></ManageClasses>,
+            },
+            {
+                path: "/dashboard/feedback/:id",
+                element: <Feedback></Feedback>,
+                loader: ({ params }) => fetch(`http://localhost:5000/feedback/${params.id}`)
             },
             {
                 path: "manageUsers",

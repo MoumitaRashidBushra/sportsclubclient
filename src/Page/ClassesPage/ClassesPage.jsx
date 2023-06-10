@@ -6,7 +6,7 @@ import ShowClasses from './ShowClasses';
 const ClassesPage = () => {
     const { user, updateUser, loading } = useContext(AuthContext);
     const { data: classes = [], refetch } = useQuery(['classes'], async () => {
-        const res = await fetch('http://localhost:5000/classes')
+        const res = await fetch('http://localhost:5000/showclass')
         return res.json();
 
     })
@@ -16,10 +16,13 @@ const ClassesPage = () => {
                 <h2 className='text-center text-4xl font-bold pt-8 pb-16'>Welcome to our band new classes!!</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-10  mb-16 lg:px-20 px-5'>
                     {
+
                         classes.map(cp => <ShowClasses
                             key={cp._id}
                             cp={cp}
+
                         ></ShowClasses>)
+
                     }
 
 
