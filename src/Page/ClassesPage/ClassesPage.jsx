@@ -13,6 +13,7 @@ const ClassesPage = () => {
     return (
         <div>
             <div className='lg:container lg:mx-auto px-5 lg:px-20 lg:pt-10 pt-10 '>
+                <h2 className='text-center text-4xl font-bold pt-8 pb-16'>Welcome to our band new classes!!</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-10  mb-16 lg:px-20 px-5'>
                     {
                         classes.map(cp => <ShowClasses
