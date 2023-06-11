@@ -9,12 +9,12 @@ const ShowClasses = ({ cp }) => {
 
     const [isRole] = UseRole();
     const { user } = useContext(AuthContext)
-    const { className, instructorName, instructorEmail, availableSeats, price, image } = cp;
+    const { _id, className, instructorName, instructorEmail, availableSeats, price, image } = cp;
     const [axiosSecure] = useAxiosSecure();
 
 
     const handleSelect = () => {
-        const selectClass = { className, instructorName, instructorEmail, availableSeats, price: parseFloat(price), image, usermail: user.email }
+        const selectClass = { classId: _id, className, instructorName, instructorEmail, availableSeats: parseFloat(availableSeats), price: parseFloat(price), image, usermail: user.email }
         console.log(selectClass)
         axiosSecure.post('/select', selectClass)
             .then(data => {
