@@ -34,7 +34,7 @@ const ShowClasses = ({ cp }) => {
 
     return (
         <div>
-            <div className="card w-full bg-base-100 shadow  ">
+            <div className={`card w-full ${availableSeats == 0 ? 'bg-red-700 shadow ' : 'bg-base-100 shadow '}  `}>
                 <figure><img src={image} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-2xl">{className}</h2>
