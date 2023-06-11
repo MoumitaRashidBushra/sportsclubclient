@@ -18,7 +18,7 @@ const Navber = () => {
     return (
         <div>
             <div className=' bg-slate-100'>
-                <div className='flex justify-between items-center flex-col  md:flex-row  container lg:container lg:mx-auto  lg:px-20 lg:pt-8 pb-6 '>
+                <div className='flex flex-col  lg:flex-row  justify-between items-center  container lg:container lg:mx-auto  lg:px-20 lg:pt-8 pb-6 '>
                     <div className='flex'>
 
 

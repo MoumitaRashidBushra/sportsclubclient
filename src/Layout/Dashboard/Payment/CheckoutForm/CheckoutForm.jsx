@@ -82,6 +82,7 @@ const CheckoutForm = ({ total, pay }) => {
                 transactionId: paymentIntent.id,
                 className: pay.className,
                 instructorName: pay.instructorName,
+                payImage: pay.image,
                 total,
                 date: new Date(),
 

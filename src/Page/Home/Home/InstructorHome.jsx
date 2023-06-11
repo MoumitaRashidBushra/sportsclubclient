@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ShowIntructor from '../../InstructorsPage/ShowIntructor';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
-import InShowHome from './InShowHome';
+
 
 const InstructorHome = () => {
     const { user, updateUser, loading } = useContext(AuthContext);
@@ -15,8 +15,10 @@ const InstructorHome = () => {
     return (
         <div>
             <section>
-                <div className='lg:container lg:mx-auto px-5 lg:px-20 lg:pt-10 pt-10 '>
-                    <h2 className='text-center text-4xl font-bold pt-8 pb-16'> All Instructor!!</h2>
+                <div className='lg:container lg:mx-auto px-5 lg:px-20 lg:pt-5 pt-5 '>
+                    <h2 className='text-center text-4xl font-bold pt-4 pb-10'> Meet our Popular Instructors!!</h2>
+                    <p
+                        className='text-center  px-6 pb-16'>Popular sports instructors play a vital role in guiding and mentoring athletes, helping them develop their skills, reach their full potential, and achieve success in their chosen sports. These instructors are not only highly knowledgeable in their respective disciplines but also possess exceptional teaching abilities and a passion for their sport.</p>
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-10  mb-16 lg:px-20 px-5'>
 
 

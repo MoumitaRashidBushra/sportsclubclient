@@ -65,6 +65,9 @@ const Dashboard = () => {
 
                                 <Link to='/dashboard/myEnrClasses' className='mx-2 lg:mx-4'>My Enrolled Classes</Link >
 
+                                <Link to='/dashboard/paymentHistory' className='mx-2 lg:mx-4'>Payment History</Link >
+
+
 
 
                             </div>

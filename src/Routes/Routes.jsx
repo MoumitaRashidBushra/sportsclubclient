@@ -20,6 +20,7 @@ import MySelectedClasses from "../Layout/Dashboard/MySelectedClasses/MySelectedC
 import MyEnrolledClasses from "../Layout/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
 import Feedback from "../Layout/Dashboard/ManageClasses/Feedback/Feedback";
 import Payment from "../Layout/Dashboard/Payment/Payment";
+import PaymentHistory from "../Layout/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
             {
                 path: "myEnrClasses",
                 element: <MyEnrolledClasses></MyEnrolledClasses>,
+            },
+            {
+                path: "paymentHistory",
+                element: <PaymentHistory></PaymentHistory>,
             },
         ]
     },
