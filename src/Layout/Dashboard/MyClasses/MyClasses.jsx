@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const MyClasses = () => {
+
+
+    const { user } = useContext(AuthContext)
+    const [axiosSecure] = useAxiosSecure();
+    const { data: myClass = [], refetch } = useQuery(['myClass'], async () => {
+
+        const res = await axiosSecure.get(`/myclass/${user.email}`);
+        return res.data;
+
+
+    })
+
+
     return (
         <div className='container lg:container lg:mx-auto  lg:px-20 lg:pt-8 pb-6 '>
             <h2 className='text-center text-4xl font-bold pt-8 pb-16'> My Classes Information!!!</h2>
@@ -26,8 +42,8 @@ const MyClasses = () => {
                     <tbody>
                         {/* row 1 */}
 
-                        {/* {
-                            classes.map((item) => <tr key={item._id}>
+                        {
+                            myClass.map((item) => <tr key={item._id}>
                                 <td>
                                     <div className=" w-24 h-24">
                                         <img src={item.image} alt="Avatar Tailwind CSS Component" />
@@ -42,31 +58,18 @@ const MyClasses = () => {
                                 <td>{item.availableSeats}</td>
                                 <td>{item.price}</td>
                                 <td>{item.status}</td>
+                                <td>{item.enrolled}</td>
+                                <td>{item.feedback}</td>
                                 <th>
                                     <button
-                                        onClick={() => handleApprove(item)}
-                                        className="btn btn-warning btn-xs text-white">Approve</button>
+                                        //onClick={() => handleApprove(item)}
+
+                                        className="btn btn-warning btn-xs text-white">Update</button>
                                 </th>
-                                <th>
-                                    <button className="btn btn-error btn-xs text-white">Deny</button>
-                                </th>
-                                <th>
-                                    <button className="btn btn-info btn-xs text-white">Feedback</button>
-                                </th>
+
 
                             </tr>)
-                        } */}
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-
-
-
+                        }
 
 
                     </tbody>

@@ -80,7 +80,9 @@ const CheckoutForm = ({ total, pay }) => {
             const payment = {
                 email: user?.email,
                 transactionId: paymentIntent.id,
+                selectedId: pay._id,
                 className: pay.className,
+                classId: pay.classId,
                 instructorName: pay.instructorName,
                 payImage: pay.image,
                 total,
