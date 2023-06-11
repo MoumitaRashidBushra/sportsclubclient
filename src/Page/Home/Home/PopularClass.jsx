@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
+import ShowPopularClass from './ShowPopularClass';
 
 
 const PopularClass = () => {
 
-    // const { user, updateUser, loading } = useContext(AuthContext);
-    // const { data: users = [], refetch } = useQuery(['users'], async () => {
-    //     const res = await fetch('http://localhost:5000/home')
-    //     return res.json();
+    const { user, updateUser, loading } = useContext(AuthContext);
+    const { data: clp = [], refetch } = useQuery(['clp'], async () => {
+        const res = await fetch('http://localhost:5000/showpopularclasses')
+        return res.json();
 
-    // })
+    })
 
     return (
         <section>
@@ -20,16 +21,14 @@ const PopularClass = () => {
                     className='text-center  px-6 pb-16'>Popular classes offer individuals the opportunity to engage in various fitness activities and improve their overall well-being. From high-energy cardio workouts to mind-body practices, these classes cater to a wide range of interests and fitness goals.</p>
 
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-10  mb-16 lg:px-20 px-5'>
+                    {
+                        clp.map(cp => <ShowPopularClass
+                            key={cp._id}
+                            cp={cp}
+                        ></ShowPopularClass>)
+                    }
 
 
-                    {/* 
-                {
-                    users.map(instructors => <ShowIntructor
-                        key={instructors._id}
-                        instructors={instructors}>
-
-                    </ShowIntructor>)
-                } */}
 
 
 

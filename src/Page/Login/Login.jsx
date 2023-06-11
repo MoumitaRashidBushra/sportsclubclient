@@ -4,12 +4,16 @@ import { FaGoogle } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     //const onSubmit = data => console.log(data);
 
-    //const [showPassword, setShowPassword] = useState(false);
+
 
     const [error, setError] = useState('');
     const location = useLocation();
@@ -88,14 +92,13 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password"  {...register("password", { required: true, maxLength: 200 })} className="input input-bordered" />
-                                {/* <i
-                                    className={`password-toggle-icon ${showPassword ? 'visible' : ''
-                                        }`}
-                                    onClick={togglePasswordVisibility}
-                                >
+
+
+
+                                <input type={showPassword ? 'text' : 'password'} placeholder="password"  {...register("password", { required: true, maxLength: 200 })} className="input input-bordered" />
+                                <button onClick={togglePasswordVisibility}>
                                     {showPassword ? 'Hide' : 'Show'}
-                                </i> */}
+                                </button>
 
                                 <p className='text-red-500'>{error}</p>
 
