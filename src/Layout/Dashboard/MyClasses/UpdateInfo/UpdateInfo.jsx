@@ -9,7 +9,8 @@ const UpdateInfo = () => {
 
     const updateInfo = useLoaderData();
 
-    const { _id } = updateInfo;
+    const { _id, className, availableSeats, price } = updateInfo;
+    console.log(updateInfo)
     const { user, updateUser, loading } = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
 
@@ -47,7 +48,7 @@ const UpdateInfo = () => {
                         <label className="label">
                             <span className="label-text">Class Name</span>
                         </label>
-                        <input type="text" placeholder="Name" name='className' {...register("className", { required: true })} defaultValue={updateInfo.className} className="input input-bordered w-full" />
+                        <input type="text" placeholder="Name" name='className' {...register("className", { required: true })} defaultValue={className} className="input input-bordered w-full" />
                     </div>
 
 
@@ -58,14 +59,14 @@ const UpdateInfo = () => {
                             <span className="label-text">Available seats</span>
                         </label>
                         <input type="text" placeholder="available seats" name='availableSeats'
-                            {...register("availableSeats", { required: true })} defaultValue={updateInfo.availableSeats} className="input input-bordered w-full" />
+                            {...register("availableSeats", { required: true })} defaultValue={availableSeats} className="input input-bordered w-full" />
                     </div>
 
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="number" placeholder="price" name='price' {...register("price", { required: true })} defaultValue={updateInfo.price} className="input input-bordered w-full" />
+                        <input type="number" placeholder="price" name='price' {...register("price", { required: true })} defaultValue={price} className="input input-bordered w-full" />
                     </div>
 
                 </div>

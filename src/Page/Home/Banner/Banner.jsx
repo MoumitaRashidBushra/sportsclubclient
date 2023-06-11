@@ -28,10 +28,7 @@ const Banner = () => {
                             <h1 className=' text-lg lg:text-5xl font-bold w-full '> Hard work beats talent when talent doesn't work hard.</h1>
                             <p className='font-semibold'>Sports teaches you character, it teaches you to play by the rules, it teaches you to know what it feels like to win and lose-it teaches you about life.</p>
 
-                            <div>
-                                <button className="btn btn-primary mr-5 mb-4">Discover More</button>
-                                <button className="btn btn-outline btn-warning">Latest Project</button>
-                            </div>
+
                         </div>
                     </div>
 
@@ -47,10 +44,7 @@ const Banner = () => {
                         <div className='ml-6 lg:ml-96 space-y-7 lg:space-y-9  mt-4  lg:mt-32 text-center w-full'>
                             <h1 className=' text-lg lg:text-5xl font-bold w-full '> Hard work beats talent when talent doesn't work hard.</h1>
                             <p className='font-semibold'>Sports teaches you character, it teaches you to play by the rules, it teaches you to know what it feels like to win and lose-it teaches you about life.</p>
-                            <div>
-                                <button className="btn btn-primary mr-5 mb-4">Discover More</button>
-                                <button className="btn btn-outline btn-warning">Latest Project</button>
-                            </div>
+
                         </div>
                     </div>
 

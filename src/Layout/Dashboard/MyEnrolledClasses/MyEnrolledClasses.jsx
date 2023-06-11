@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import useTitle from '../../../Hooks/useTitle';
 
 const MyEnrolledClasses = () => {
+    useTitle('MyEnrolledClasses');
 
 
     const { user } = useContext(AuthContext)

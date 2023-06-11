@@ -3,8 +3,10 @@ import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../Hooks/useTitle';
 
 const ManageClasses = () => {
+    useTitle('ManageClasses');
     const [axiosSecure] = useAxiosSecure();
     const { data: classes = [], refetch } = useQuery(['classes'], async () => {
         const res = await axiosSecure.get('/classes');

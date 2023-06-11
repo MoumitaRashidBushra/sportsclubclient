@@ -4,8 +4,10 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
+    useTitle('Register');
 
 
     const [error, setError] = useState('');
@@ -39,7 +41,7 @@ const Register = () => {
                             email: data.email,
                             photo: data.photo
                         }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://sports-club-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -83,7 +85,7 @@ const Register = () => {
                     email: loggedUser.email,
                     photo: loggedUser.photo
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://sports-club-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

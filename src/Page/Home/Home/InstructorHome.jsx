@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 const InstructorHome = () => {
     const { user, updateUser, loading } = useContext(AuthContext);
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/home')
+        const res = await fetch('https://sports-club-server.vercel.app/home')
         return res.json();
 
     })

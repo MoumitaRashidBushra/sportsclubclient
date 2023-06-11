@@ -15,7 +15,7 @@ const Footer = () => {
 
 
                         <a className="btn btn-ghost normal-case text-xl font-extrabold text-left">Sports Club</a>
-                        <p className=' mt-3 ml-4 w-full'>We're here to make playtime extraordinary, because at Toy Zone, play is not just a pastime—it's an adventure!".</p>
+                        <p className=' mt-3 ml-4 w-full'>Sports clubs embody the spirit of teamwork, dedication, and passion. They are the breeding ground for champions and the nurturing ground for dreams..</p>
 
 
                     </div>

@@ -4,14 +4,15 @@ import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-    const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users')
+    const { data: manage = [], refetch } = useQuery([' manage'], async () => {
+        const res = await fetch('https://sports-club-server.vercel.app/users')
         return res.json();
 
     })
+    console.log(manage)
 
     const handleToMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://sports-club-server.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -31,7 +32,7 @@ const ManageUsers = () => {
     }
 
     const handleToMakeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`https://sports-club-server.vercel.app/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -52,7 +53,7 @@ const ManageUsers = () => {
 
     return (
         <div className=" container lg:container  lg:mx-auto px-10 lg:px-20 ">
-            <h3 className="text-3xl font-semibold my-4 text-center">Total Users: {users.length}</h3>
+            <h3 className="text-3xl font-semibold my-4 text-center">Total Users: {manage.length}</h3>
 
 
             <div className="overflow-x-auto">
@@ -69,7 +70,7 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            manage?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>

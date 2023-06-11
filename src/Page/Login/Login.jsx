@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import useTitle from '../../Hooks/useTitle';
 const Login = () => {
+    useTitle('login');
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -54,7 +57,7 @@ const Login = () => {
                     name: loggedUser.displayName,
                     email: loggedUser.email
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://sports-club-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -95,10 +98,12 @@ const Login = () => {
 
 
 
-                                <input type={showPassword ? 'text' : 'password'} placeholder="password"  {...register("password", { required: true, maxLength: 200 })} className="input input-bordered" />
-                                <button onClick={togglePasswordVisibility}>
-                                    {showPassword ? 'Hide' : 'Show'}
-                                </button>
+                                <div className='flex gap-10'>
+                                    <input type={showPassword ? ' text' : 'password'} placeholder="password"  {...register("password", { required: true, maxLength: 200 })} className="input input-bordered" />
+                                    <button onClick={togglePasswordVisibility}>
+                                        {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+                                    </button>
+                                </div>
 
                                 <p className='text-red-500'>{error}</p>
 

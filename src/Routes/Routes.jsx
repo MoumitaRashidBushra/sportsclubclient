@@ -25,6 +25,7 @@ import UpdateInfo from "../Layout/Dashboard/MyClasses/UpdateInfo/UpdateInfo";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import InstructorRoutes from "./InstructorRoutes/InstructorRoutes";
 import StudentRoutes from "./StudentRoutes/StudentRoutes";
+import Dashhome from "../Layout/Dashboard/Dashhome/Dashhome";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
+            {
+                path: "/dashboard",
+                element: <Dashhome></Dashhome>,
+            },
             //Admin Routes
             {
                 path: "manageClasses",
@@ -67,8 +72,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/feedback/:id",
-                element: <AdminRoutes><Feedback></Feedback></AdminRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/feedback/${params.id}`)
+                element: <Feedback></Feedback>,
+                loader: ({ params }) => fetch(`https://sports-club-server.vercel.app/feedback/${params.id}`)
             },
             {
                 path: "manageUsers",
@@ -86,8 +91,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/updateinfo/:id",
-                element: <InstructorRoutes><UpdateInfo></UpdateInfo></InstructorRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/updateinfo/${params.id}`)
+                element: <UpdateInfo></UpdateInfo>,
+                loader: ({ params }) => fetch(`https://sports-club-server.vercel.app/updateinfo/${params.id}`)
             },
 
             //Student routes
@@ -98,8 +103,8 @@ const router = createBrowserRouter([
 
             {
                 path: "/dashboard/payment/:id",
-                element: <StudentRoutes><Payment></Payment></StudentRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`https://sports-club-server.vercel.app/payment/${params.id}`)
             },
             {
                 path: "myEnrClasses",

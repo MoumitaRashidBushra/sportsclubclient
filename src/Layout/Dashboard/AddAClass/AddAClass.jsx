@@ -3,8 +3,13 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
+import useTitle from '../../../Hooks/useTitle';
 const imgHosting = import.meta.env.VITE_IMAGE;
+
+
 const AddAClass = () => {
+
+    useTitle('Add A Class');
 
 
     const { user, updateUser, loading } = useContext(AuthContext);

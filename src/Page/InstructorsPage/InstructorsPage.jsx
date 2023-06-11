@@ -2,11 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import ShowIntructor from './ShowIntructor';
+import useTitle from '../../Hooks/useTitle';
 
 const InstructorsPage = () => {
+    useTitle('Instructors');
     const { user, updateUser, loading } = useContext(AuthContext);
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/instructor')
+        const res = await fetch('https://sports-club-server.vercel.app/instructor')
         return res.json();
 
     })

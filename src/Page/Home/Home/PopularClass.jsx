@@ -8,7 +8,7 @@ const PopularClass = () => {
 
     const { user, updateUser, loading } = useContext(AuthContext);
     const { data: clp = [], refetch } = useQuery(['clp'], async () => {
-        const res = await fetch('http://localhost:5000/showpopularclasses')
+        const res = await fetch('https://sports-club-server.vercel.app/showpopularclasses')
         return res.json();
 
     })
