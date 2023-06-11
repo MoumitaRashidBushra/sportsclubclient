@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
 
@@ -61,10 +62,12 @@ const MyClasses = () => {
                                 <td>{item.enrolled}</td>
                                 <td>{item.feedback}</td>
                                 <th>
-                                    <button
-                                        //onClick={() => handleApprove(item)}
 
-                                        className="btn btn-warning btn-xs text-white">Update</button>
+                                    <Link
+                                        to={`/dashboard/updateinfo/${item._id}`}>
+                                        <button className="btn btn-warning btn-xs text-white">Update</button>
+                                    </Link>
+
                                 </th>
 
 

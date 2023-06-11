@@ -21,6 +21,7 @@ import MyEnrolledClasses from "../Layout/Dashboard/MyEnrolledClasses/MyEnrolledC
 import Feedback from "../Layout/Dashboard/ManageClasses/Feedback/Feedback";
 import Payment from "../Layout/Dashboard/Payment/Payment";
 import PaymentHistory from "../Layout/Dashboard/PaymentHistory/PaymentHistory";
+import UpdateInfo from "../Layout/Dashboard/MyClasses/UpdateInfo/UpdateInfo";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +81,11 @@ const router = createBrowserRouter([
             {
                 path: "mySelClasses",
                 element: <MySelectedClasses></MySelectedClasses>,
+            },
+            {
+                path: "/dashboard/updateinfo/:id",
+                element: <UpdateInfo></UpdateInfo>,
+                loader: ({ params }) => fetch(`http://localhost:5000/updateinfo/${params.id}`)
             },
             {
                 path: "/dashboard/payment/:id",
