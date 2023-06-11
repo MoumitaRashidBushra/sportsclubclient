@@ -4,7 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import UseRole from '../../Hooks/UseRole/UseRole';
 import Swal from 'sweetalert2';
 
-const AdminRoutes = () => {
+const AdminRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const [isRole, isRoleLoading] = UseRole();
     const location = useLocation();
